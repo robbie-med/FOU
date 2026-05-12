@@ -30,7 +30,10 @@ const DISEASES = [
       'Sputum AFB × 3 with cultures, NAAT',
       'Urine AFB if GU symptoms; LP if CNS suspected; bone marrow/liver bx for miliary'
     ],
-    redFlag: 'Miliary or CNS TB — start empiric RIPE in immunosuppressed FUO with weight loss + night sweats.'
+    redFlag: 'Miliary or CNS TB — start empiric RIPE in immunosuppressed FUO with weight loss + night sweats.',
+    refs: [
+      { label: 'CDC TB', url: 'https://www.cdc.gov/tb/hcp/clinical-overview/index.html' }
+    ]
   },
 
   {
@@ -54,7 +57,10 @@ const DISEASES = [
       'CBC, ESR, CRP, RF, urinalysis',
       'Culture-negative workup: Bartonella, Coxiella (Q fever), Brucella, fungal'
     ],
-    redFlag: 'If patient toxic / prosthetic valve / acute decompensation — empiric coverage after blood cultures.'
+    redFlag: 'If patient toxic / prosthetic valve / acute decompensation — empiric coverage after blood cultures.',
+    refs: [
+      { label: 'IDSA/AHA guideline', url: 'https://www.idsociety.org/practice-guideline/endocarditis-management/' }
+    ]
   },
 
   {
@@ -76,6 +82,9 @@ const DISEASES = [
       'Brucella serology (SAT) and blood cultures (hold ≥21 days; alert lab)',
       'Bone marrow culture if blood cultures negative',
       'MRI SI joints if back pain'
+    ],
+    refs: [
+      { label: 'CDC Brucellosis', url: 'https://www.cdc.gov/brucellosis/hcp/clinical-overview/' }
     ]
   },
 
@@ -96,6 +105,9 @@ const DISEASES = [
       'Coxiella burnetii phase I and II IgG (IFA)',
       'Echocardiography if persistent fever or cardiac history',
       'Doxycycline if highly suspected with hepatitis'
+    ],
+    refs: [
+      { label: 'CDC Q fever', url: 'https://www.cdc.gov/q-fever/hcp/clinical-guidance/index.html' }
     ]
   },
 
@@ -121,7 +133,10 @@ const DISEASES = [
       'PCR available at some reference labs'
     ],
     redFlag: 'Mortality rises sharply after day 5. Treat empirically on any suspicion — tick exposure or unexplained thrombocytopenia + transaminitis in South-Central US.',
-    empiricRx: 'Doxycycline 100 mg PO/IV BID (all ages including children — AAP-endorsed)'
+    empiricRx: 'Doxycycline 100 mg PO/IV BID (all ages including children — AAP-endorsed)',
+    refs: [
+      { label: 'CDC RMSF', url: 'https://www.cdc.gov/rocky-mountain-spotted-fever/hcp/clinical-care/index.html' }
+    ]
   },
 
   {
@@ -142,6 +157,9 @@ const DISEASES = [
       'Empiric doxycycline — same urgency as RMSF',
       'PCR (most sensitive in first week of illness)',
       'Serology (IFA) acute + convalescent at 2–4 wk'
+    ],
+    refs: [
+      { label: 'CDC Ehrlichiosis', url: 'https://www.cdc.gov/ehrlichiosis/hcp/clinical-overview/index.html' }
     ]
   },
 
@@ -162,6 +180,9 @@ const DISEASES = [
       'Tularemia serology (microagglutination); titer ≥1:160 suggestive',
       'HIGH BIOHAZARD — do not culture without alerting lab; biosafety level 3',
       'Streptomycin or gentamicin preferred; ciprofloxacin alternative'
+    ],
+    refs: [
+      { label: 'CDC Tularemia', url: 'https://www.cdc.gov/tularemia/hcp/clinical-care/index.html' }
     ]
   },
 
@@ -185,6 +206,9 @@ const DISEASES = [
       'Lyme PCR on synovial fluid if Lyme arthritis suspected',
       'LP with CSF Lyme Ab index if neurologic symptoms',
       'ECG if palpitations or syncope (AV block in early disseminated Lyme)'
+    ],
+    refs: [
+      { label: 'CDC Lyme', url: 'https://www.cdc.gov/lyme/hcp/clinical-care/index.html' }
     ]
   },
 
@@ -233,6 +257,9 @@ const DISEASES = [
       'Histoplasma urine + serum antigen (best sensitivity in disseminated disease)',
       'Serology (CF and ID) for non-disseminated',
       'Bone marrow biopsy with stains/culture if disseminated suspected'
+    ],
+    refs: [
+      { label: 'CDC Histoplasmosis', url: 'https://www.cdc.gov/histoplasmosis/hcp/clinical-overview/index.html' }
     ]
   },
 
@@ -253,6 +280,9 @@ const DISEASES = [
       'Blastomyces urine antigen (cross-reacts with Histoplasma)',
       'Sputum/tissue fungal cultures and KOH prep',
       'Skin biopsy if lesions present'
+    ],
+    refs: [
+      { label: 'CDC Blastomycosis', url: 'https://www.cdc.gov/blastomycosis/hcp/clinical-overview/index.html' }
     ]
   },
 
@@ -272,6 +302,9 @@ const DISEASES = [
       'Coccidioides serology (IgM/IgG by EIA, confirm with ID/CF)',
       'Urine antigen if disseminated suspected',
       'CXR + chest CT'
+    ],
+    refs: [
+      { label: 'CDC Valley Fever', url: 'https://www.cdc.gov/valley-fever/hcp/clinical-overview/index.html' }
     ]
   },
 
@@ -458,7 +491,10 @@ const DISEASES = [
       'Quantify parasitemia % if positive',
       'PCR for species confirmation in select cases'
     ],
-    redFlag: 'ALWAYS rule out malaria FIRST in any febrile returned traveler from endemic area. Falciparum can kill within 24 hours.'
+    redFlag: 'ALWAYS rule out malaria FIRST in any febrile returned traveler from endemic area. Falciparum can kill within 24 hours.',
+    refs: [
+      { label: 'CDC Malaria', url: 'https://www.cdc.gov/malaria/hcp/clinical-guidance/index.html' }
+    ]
   },
 
   {
@@ -962,7 +998,10 @@ const DISEASES = [
       'CT or MR angiography for large-vessel involvement'
     ],
     redFlag: 'Risk of irreversible vision loss. Any FUO patient ≥50 with elevated ESR and head/visual symptoms — treat empirically before biopsy.',
-    empiricRx: 'Prednisone 40–60 mg/d (or IV methylprednisolone 1 g/d × 3 if visual symptoms)'
+    empiricRx: 'Prednisone 40–60 mg/d (or IV methylprednisolone 1 g/d × 3 if visual symptoms)',
+    refs: [
+      { label: 'ACR vasculitis guideline', url: 'https://rheumatology.org/vasculitis-guideline' }
+    ]
   },
 
   {

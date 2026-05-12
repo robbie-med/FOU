@@ -438,6 +438,7 @@ function renderDiseaseCard(d, score, matches) {
       <div class="row"><div class="label">Look for</div><div><ul>${d.lookFor.map(x => `<li>${x}</li>`).join('')}</ul></div></div>
       <div class="row"><div class="label">Order</div><div><ul>${d.order.map(x => `<li>${x}</li>`).join('')}</ul></div></div>
       ${d.redFlag ? `<div class="alert-note"><strong>Red flag:</strong> ${d.redFlag}${d.empiricRx ? `<br><strong>Empiric Rx:</strong> ${d.empiricRx}` : ''}</div>` : ''}
+      ${d.refs && d.refs.length ? `<div class="card-refs">${d.refs.map(r => `<a href="${r.url}" target="_blank" rel="noopener noreferrer" class="ref-link">${r.label} ↗</a>`).join('')}</div>` : ''}
     </div>
   `;
 }

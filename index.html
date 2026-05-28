@@ -16,7 +16,10 @@
     <span class="logo"><span class="bracket">[</span>FUO<span class="bracket">]</span> workup</span>
     <span class="sub">v2 · clinical decision support</span>
   </div>
-  <div class="tag">robbie.med · educational only · not for sole clinical decisions</div>
+  <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+    <button class="btn-teach" onclick="openTeachPanel()">Teach</button>
+    <div class="tag">robbie.med · educational only · not for sole clinical decisions</div>
+  </div>
 </header>
 
 <div class="shell">
@@ -390,6 +393,319 @@
 <footer>
   <span class="em">[</span> robbie.med · FUO Workup v2 · educational support, not a substitute for clinical judgment · feedback welcome <span class="em">]</span>
 </footer>
+
+<!-- ===== TEACHING OVERLAY ===== -->
+<div id="teach-overlay" role="dialog" aria-modal="true" aria-label="Teaching panel">
+
+  <div class="teach-topbar">
+    <div>
+      <span class="teach-brand"><span class="t-bracket">[</span>FUO<span class="t-bracket">]</span> teaching mode</span>
+      <span class="teach-context">15-min inpatient block &nbsp;·&nbsp; Internal medicine residents &nbsp;·&nbsp; Academic hospital</span>
+    </div>
+    <button class="teach-close-btn" onclick="closeTeachPanel()">✕ Close</button>
+  </div>
+
+  <div class="teach-wrap">
+
+    <div class="teach-agenda-strip">
+      <span>1.5 min · Definition</span>
+      <span>2.5 min · Epidemiology</span>
+      <span>3 min · History &amp; exam</span>
+      <span>3 min · Staged workup</span>
+      <span>2 min · Don't do</span>
+      <span>2 min · Empiric Rx</span>
+      <span>1 min · Pearls</span>
+    </div>
+
+    <div class="teach-controls">
+      <button onclick="expandAllTeachSections()">Expand all</button>
+      <button onclick="collapseAllTeachSections()">Collapse all</button>
+    </div>
+
+    <!-- 01 Definition -->
+    <details class="teach-section" open>
+      <summary>
+        <span class="teach-sec-num">01</span>
+        <span class="teach-sec-title">Definition &amp; subtypes</span>
+        <span class="teach-sec-time">1.5 min</span>
+      </summary>
+      <div class="teach-sec-body">
+        <div class="socratic">
+          <span class="socratic-label">Discuss first</span>
+          <p>"What actually makes a fever 'unknown origin'? What's the minimum workup threshold before it qualifies as FUO — and why does the 3-week mark matter clinically?"</p>
+        </div>
+        <div class="teach-box">
+          <p><strong>Classic FUO:</strong> Temperature &gt;38.3°C (&gt;101°F) documented on ≥2 occasions, duration &gt;3 weeks, <em>no diagnosis after adequate evaluation</em> — defined as ≥3 outpatient visits, ≥3 inpatient days, or ≥1 week of structured ambulatory investigation.</p>
+          <p class="teach-note">The 3-week threshold excludes self-limited viral illness. The "adequate evaluation" clause is the real key — it's not FUO if nobody looked carefully. (Petersdorf &amp; Beeson, 1961; updated Durack &amp; Street, 1991)</p>
+        </div>
+        <div class="teach-subtypes">
+          <div class="teach-subtype">
+            <div class="teach-subtype-name">Nosocomial</div>
+            <p>Fever &gt;3 days in hospital, afebrile on admission. Top considerations: <strong>drug fever, C. diff, DVT/PE, line infection, occult abscess</strong>. Different workup entirely.</p>
+          </div>
+          <div class="teach-subtype teach-subtype-urgent">
+            <div class="teach-subtype-name">Neutropenic — emergency</div>
+            <p>ANC &lt;500. Antipseudomonal antibiotics within <strong>1 hour</strong>. This is a protocol, not a judgment call. Mortality increases with every hour of delay.</p>
+          </div>
+          <div class="teach-subtype">
+            <div class="teach-subtype-name">HIV-associated</div>
+            <p>Fever &gt;4 weeks (or &gt;3 days if hospitalized). Expand the differential: <strong>MAC, CMV, disseminated histo/cocci, PJP, lymphoma, IRIS</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 02 Epidemiology -->
+    <details class="teach-section">
+      <summary>
+        <span class="teach-sec-num">02</span>
+        <span class="teach-sec-title">Epidemiology — what's actually causing it?</span>
+        <span class="teach-sec-time">2.5 min</span>
+      </summary>
+      <div class="teach-sec-body">
+        <div class="socratic">
+          <span class="socratic-label">Discuss first</span>
+          <p>"Before you look at the chart — just from the population — what's your prior? Infection, malignancy, or inflammatory disease? What shifts your prior most?"</p>
+        </div>
+        <div class="teach-epi-grid">
+          <div class="teach-epi-cat">
+            <div class="teach-epi-pct">11–55%</div>
+            <div class="teach-epi-cat-name">Infection</div>
+            <ul><li>TB, endocarditis, abscess</li><li>Brucellosis, Q fever</li><li>EBV, CMV, acute HIV</li><li>Regional: RMSF, histo, blasto</li></ul>
+          </div>
+          <div class="teach-epi-cat">
+            <div class="teach-epi-pct">12–34%</div>
+            <div class="teach-epi-cat-name">Inflammatory / rheumatic</div>
+            <ul><li>Adult Still's disease</li><li>Giant cell arteritis (≥50)</li><li>SLE, ANCA vasculitis</li><li>Sarcoidosis, IgG4-RD</li></ul>
+          </div>
+          <div class="teach-epi-cat">
+            <div class="teach-epi-pct">7–35%</div>
+            <div class="teach-epi-cat-name">Malignancy</div>
+            <ul><li>Hodgkin &amp; NHL (most common)</li><li>Leukemia</li><li>RCC, HCC, atrial myxoma</li></ul>
+          </div>
+          <div class="teach-epi-cat">
+            <div class="teach-epi-pct">2–20%</div>
+            <div class="teach-epi-cat-name">Miscellaneous</div>
+            <ul><li>Drug fever</li><li>VTE, IBD</li><li>Periodic fever syndromes</li><li>Factitious fever</li></ul>
+          </div>
+        </div>
+        <div class="teach-epi-stats">
+          <div class="teach-stat-item"><strong>7–51%</strong><span>never reach a diagnosis</span></div>
+          <div class="teach-stat-item"><strong>~40%</strong><span>of undiagnosed cases resolve spontaneously</span></div>
+          <div class="teach-stat-item"><strong>~7%</strong><span>5-year mortality — mostly NHL</span></div>
+        </div>
+        <div class="teach-always-box">
+          <span class="teach-always-label">Always on the list — missed too often to ever drop</span>
+          <div class="teach-always-chips">
+            <span>TB</span><span>Endocarditis</span><span>Hodgkin / NHL</span><span>Occult abscess</span><span>GCA (age ≥50)</span><span>Drug fever</span><span>VTE</span>
+          </div>
+        </div>
+        <div class="teach-pearl-box">
+          <span class="teach-pearl-label">Trend to know</span>
+          <p>In modern US academic centers, <strong>inflammatory causes have increased</strong> and infectious causes have declined — better empiric antibiotics, better imaging, changed epidemiology. If the patient is &gt;65 with weeks of fever and no localizing signs, GCA and Still's move near the top before any other testing.</p>
+        </div>
+        <p class="teach-cite">Wright &amp; Auwaerter, Open Forum Infect Dis 2020 (PMID 32462043) · Bleeker-Rovers et al., Medicine 2007 (PMID 17220753)</p>
+      </div>
+    </details>
+
+    <!-- 03 History & Exam -->
+    <details class="teach-section">
+      <summary>
+        <span class="teach-sec-num">03</span>
+        <span class="teach-sec-title">History &amp; exam — where diagnoses hide</span>
+        <span class="teach-sec-time">3 min</span>
+      </summary>
+      <div class="teach-sec-body">
+        <div class="socratic">
+          <span class="socratic-label">Discuss first</span>
+          <p>"Your intern wants to order 'the FUO panel' — ESR, ANA, ANCA, SPEP, ferritin, all serologies at once. What do you say, and why does the order of operations matter?"</p>
+        </div>
+        <p class="teach-axiom">"The history is the answer. The labs are the confirmation."</p>
+        <p style="font-size:14px; color:var(--text-dim);">A single exposure detail — cat scratch, raw milk, tick bite, new lisinopril, demolition site — can collapse a 68-disease differential in seconds. No lab panel can do that.</p>
+        <div class="teach-box">
+          <div class="teach-domain-label">History domains to interrogate every time</div>
+          <div class="teach-domain-chips">
+            <span>Travel (past 12 months)</span>
+            <span>Animal contact</span>
+            <span>Tick / mosquito exposure</span>
+            <span>Raw foods / milk / shellfish</span>
+            <span>New medications (3–6 wk)</span>
+            <span>Sexual history / STI risk</span>
+            <span>TB contacts / incarceration</span>
+            <span>Occupation / demolition / caves</span>
+            <span>River valley / freshwater exposure</span>
+            <span>Alcohol / liver disease</span>
+            <span>Implants / prosthetics / recent dental</span>
+            <span>Family history periodic fevers</span>
+          </div>
+        </div>
+        <div class="teach-box">
+          <div class="teach-domain-label">Physical exam — what gets missed</div>
+          <ul class="teach-exam-list">
+            <li><strong>Skin in full light:</strong> Janeway lesions (painless palmar macules = endocarditis), Osler nodes (painful fingertip nodules), splinter hemorrhages, salmon/evanescent rash (Still's), petechiae (RMSF, meningococcemia), erythema nodosum</li>
+            <li><strong>All lymph node chains:</strong> posterior cervical, supraclavicular, epitrochlear, popliteal — not just groin and axilla</li>
+            <li><strong>Temporal arteries in any patient ≥50 with headache:</strong> tenderness, induration, absent pulse, scalp tenderness</li>
+            <li><strong>Inside the mouth:</strong> dental abscess, gingival findings — often the culprit when present</li>
+            <li><strong>Fundoscope:</strong> Roth spots (endocarditis), choroidal lesions (disseminated fungal / miliary TB)</li>
+          </ul>
+        </div>
+        <div class="teach-pearl-box">
+          <span class="teach-pearl-label">Fever pattern — don't suppress it</span>
+          <p>Scheduled antipyretics erase a diagnostic signal. <strong>Quotidian</strong> (spikes returning to baseline daily) = Adult Still's. <strong>Pel-Ebstein</strong> (days of fever / days of afebrile, cycling) = Hodgkin. <strong>Tertian</strong> (q48h) = P. vivax / falciparum. <strong>Undulant</strong> = brucellosis. <strong>Drenching sweats</strong> at peak = lymphoma or TB.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- 04 Staged Workup -->
+    <details class="teach-section">
+      <summary>
+        <span class="teach-sec-num">04</span>
+        <span class="teach-sec-title">Staged workup — following the PDC</span>
+        <span class="teach-sec-time">3 min</span>
+      </summary>
+      <div class="teach-sec-body">
+        <p style="font-size:14px;color:var(--text-dim);">PDC = <strong>Potentially Diagnostic Clue</strong> — any history finding, physical finding, or lab result that narrows the differential. The entire strategy is: find a PDC, follow it with targeted testing, reassess. Do not order everything at once.</p>
+        <div class="teach-stages">
+          <div class="teach-stage">
+            <div class="teach-stage-hdr">Stage 1 — Initial evaluation</div>
+            <ul>
+              <li>CBC with diff, CMP, LFTs, LDH, ferritin, ESR, CRP, UA + culture</li>
+              <li>Blood cultures ×3 from separate sites — BEFORE any antibiotics</li>
+              <li>CXR; CT chest if abnormal or high suspicion</li>
+              <li>CT abdomen/pelvis with IV contrast</li>
+              <li>HIV 4th-gen Ag/Ab, IGRA (QuantiFERON), EBV/CMV serology</li>
+            </ul>
+          </div>
+          <div class="teach-stage">
+            <div class="teach-stage-hdr">Stage 2 — If no PDC after Stage 1</div>
+            <ul>
+              <li>Targeted serology based on exposure history (Brucella, Bartonella/Coxiella, Lyme two-tier, etc.)</li>
+              <li>ANA, ANCA, RF, anti-dsDNA, complement if inflammatory suspected</li>
+              <li>SPEP + UPEP if malignancy / plasma cell disorder suspected</li>
+              <li>TTE → TEE if endocarditis remains on list despite negative blood cultures</li>
+              <li>Stop non-essential medications × 72 h to test for drug fever</li>
+            </ul>
+          </div>
+          <div class="teach-stage">
+            <div class="teach-stage-hdr">Stage 3 — Persistent FUO, advanced workup</div>
+            <ul>
+              <li><strong>FDG-PET/CT</strong> — highest single-test yield after Stage 1 fails; identifies metabolically active tissue (inflammation, malignancy, occult abscess) and guides biopsy site</li>
+              <li>Lymph node biopsy: excisional preferred. <em>High yield: posterior cervical, supraclavicular, epitrochlear. Avoid: inguinal, axillary (low specificity, reactive changes)</em></li>
+              <li>Temporal artery biopsy in any patient ≥50 with elevated ESR</li>
+              <li>Bone marrow biopsy (pancytopenia, suspected miliary TB, culture-negative endocarditis)</li>
+              <li>Liver biopsy if granulomatous hepatitis suspected (elevated alk phos, hepatomegaly)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="teach-pearl-box">
+          <span class="teach-pearl-label">PET-CT pearl</span>
+          <p>FDG-PET is the most useful advanced imaging in FUO — not just CT or MRI alone. Best evidence: use it when CRP/ESR are elevated and no localizing clue found after Stage 1–2 workup. It detects occult lymphoma, large-vessel vasculitis (e.g., aortitis in GCA), active granulomas, and abscess that may be invisible on standard cross-sectional imaging.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- 05 Don't Do -->
+    <details class="teach-section">
+      <summary>
+        <span class="teach-sec-num">05</span>
+        <span class="teach-sec-title">What NOT to do — and why</span>
+        <span class="teach-sec-time">2 min</span>
+      </summary>
+      <div class="teach-sec-body">
+        <div class="socratic">
+          <span class="socratic-label">Discuss first</span>
+          <p>"Your patient spikes to 39.9°C at 2 AM. The nurse calls asking for Tylenol orders. What do you say — and if the answer is 'no,' how do you explain it to the patient?"</p>
+        </div>
+        <div class="teach-donts">
+          <div class="teach-dont-item">
+            <div class="teach-dont-hdr">✕ Empiric broad-spectrum antibiotics for undiagnosed FUO</div>
+            <p>Sterilizes blood cultures. Masks fever pattern. Creates false reassurance of "responding to treatment." The only exceptions are genuine emergencies where delay is life-threatening — neutropenic fever, suspected RMSF, GCA with visual loss (see Section 6).</p>
+          </div>
+          <div class="teach-dont-item">
+            <div class="teach-dont-hdr">✕ Empiric glucocorticoids before a diagnosis</div>
+            <p>Steroids lower fever in infection, malignancy, <em>and</em> inflammatory disease alike — they are not a diagnostic test. Worse: steroids can lyse lymphoma cells and dramatically reduce biopsy yield. <em>Exception: GCA with active visual symptoms — treat now, biopsy within 1–2 weeks — histopathology remains interpretable.</em></p>
+          </div>
+          <div class="teach-dont-item">
+            <div class="teach-dont-hdr">✕ Scheduled antipyretics masking fever pattern</div>
+            <p>Quotidian = Still's. Pel-Ebstein = Hodgkin. Tertian = malaria. Undulant = brucellosis. Scheduled Tylenol erases these signals. Use only PRN for comfort at very high temperatures.</p>
+          </div>
+          <div class="teach-dont-item">
+            <div class="teach-dont-hdr">✕ Anchoring on a nonspecific positive test</div>
+            <p>ANA 1:80, positive monospot, mildly elevated ferritin — these are clues, not diagnoses. Premature closure on a low-specificity result causes anchoring and delays the real diagnosis. Continue the systematic evaluation.</p>
+          </div>
+          <div class="teach-dont-item">
+            <div class="teach-dont-hdr">✕ Skip the mouth and the skin</div>
+            <p>Dental abscess, Janeway lesions, Osler nodes, splinter hemorrhages, salmon rash, petechiae — the diagnosis is sometimes visible if you look. 60 seconds, every time.</p>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 06 Empiric Rx -->
+    <details class="teach-section">
+      <summary>
+        <span class="teach-sec-num">06</span>
+        <span class="teach-sec-title">When to treat empirically — the exceptions</span>
+        <span class="teach-sec-time">2 min</span>
+      </summary>
+      <div class="teach-sec-body">
+        <div class="socratic">
+          <span class="socratic-label">Discuss first</span>
+          <p>"67-year-old from Oklahoma, 9 days of fever, headache, thrombocytopenia, and transaminitis. No rash yet. Walk me through your decision about empiric treatment."</p>
+        </div>
+        <div class="teach-empirics">
+          <div class="teach-empiric-item teach-empiric-urgent">
+            <div class="teach-empiric-hdr">🔴 Neutropenic fever (ANC &lt;500)</div>
+            <p>This is a protocol, not a clinical judgment. Antipseudomonal beta-lactam (cefepime, pip-tazo, meropenem based on MASCC risk) within <strong>1 hour</strong>. Start before results are back.</p>
+          </div>
+          <div class="teach-empiric-item teach-empiric-urgent">
+            <div class="teach-empiric-hdr">🔴 GCA with threatened vision</div>
+            <p>Amaurosis fugax, diplopia, or monocular visual loss in a patient ≥50 with elevated ESR → <strong>prednisone 60 mg PO (or methylprednisolone 1 g IV × 3) today.</strong> Do not wait for biopsy. Temporal artery biopsy remains interpretable for 1–2 weeks after steroids are started.</p>
+          </div>
+          <div class="teach-empiric-item">
+            <div class="teach-empiric-hdr">⚠ RMSF / tick-borne — South-Central US, tick exposure</div>
+            <p>Tick exposure + fever + thrombocytopenia + transaminitis (± headache) in OK/AR/MO/KS/TN → <strong>doxycycline 100 mg PO/IV BID now.</strong> Serology is negative in the first 7–10 days. Mortality climbs sharply after day 5 — you cannot wait for confirmatory results.</p>
+          </div>
+          <div class="teach-empiric-item">
+            <div class="teach-empiric-hdr">⚠ Miliary / disseminated TB — deteriorating immunosuppressed patient</div>
+            <p>Immunosuppressed, weight loss + night sweats + bilateral infiltrates, clinical deterioration → empiric RIPE before AFB culture (6–8 weeks). Send sputum AFB ×3, urine AFB, blood AFB, bone marrow culture first — then treat.</p>
+          </div>
+          <div class="teach-empiric-item">
+            <div class="teach-empiric-hdr">⚠ HLH — ferritin &gt;10,000 + cytopenias + splenomegaly</div>
+            <p>This is HLH until proven otherwise. Immediate hematology + rheumatology co-management. Add triglycerides, fibrinogen, NK activity, sIL-2R. <strong>Do not treat as refractory sepsis without excluding HLH</strong> — it will not respond and the delay is fatal.</p>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 07 Pearls -->
+    <details class="teach-section">
+      <summary>
+        <span class="teach-sec-num">07</span>
+        <span class="teach-sec-title">Take-home pearls</span>
+        <span class="teach-sec-time">1 min</span>
+      </summary>
+      <div class="teach-sec-body">
+        <ul class="teach-pearls">
+          <li>FUO is almost always an <strong>atypical presentation of a common disease</strong> — TB without pulmonary symptoms, endocarditis without a murmur, lymphoma without palpable LAD. Think common diseases presenting uncommonly.</li>
+          <li><strong>40% of FUO cases never get a diagnosis</strong> and many of those resolve spontaneously. An undiagnosed FUO is not automatically a death sentence.</li>
+          <li><strong>History first, labs second.</strong> A single exposure detail collapses the differential instantly. No shotgun panel can do that — and shotgun panels generate false positives that anchor thinking.</li>
+          <li><strong>Ferritin &gt;10,000</strong> is approximately 90% sensitive for HLH in adults with systemic inflammation. Always check it in FUO; it also points toward Still's disease and lymphoma.</li>
+          <li><strong>Serial physical exams</strong> reveal findings that a single admission exam misses — new lymph node, evolving murmur, temporal artery tenderness. Revisit the exam each day.</li>
+          <li>The <strong>naproxen test:</strong> 3 days of naproxen reliably suppress fever → malignant etiology more likely than infectious. Low evidence, but a useful gestalt adjunct.</li>
+          <li><strong>Lymph node biopsy site matters:</strong> posterior cervical, supraclavicular, epitrochlear = high diagnostic yield. Inguinal, axillary = avoid if possible (reactive changes, low specificity).</li>
+          <li>When FUO persists for months without a diagnosis, revisit the medication list — <strong>drug fever</strong> can come from an agent started years ago (e.g., hydralazine, phenytoin, allopurinol). Also consider factitious fever in healthcare workers.</li>
+        </ul>
+      </div>
+    </details>
+
+    <div class="teach-foot">
+      <span>Wright &amp; Auwaerter, <em>Open Forum Infect Dis</em> 2020 &nbsp;·&nbsp; Bleeker-Rovers et al., <em>Medicine</em> 2007 &nbsp;·&nbsp; AAFP <em>Am Fam Physician</em> 2022 &nbsp;·&nbsp; Harrison's 20th ed.</span>
+      <span>Educational only · robbie.med</span>
+    </div>
+
+  </div><!-- .teach-wrap -->
+</div><!-- #teach-overlay -->
 
 <script src="diseases.js"></script>
 <script src="app.js"></script>

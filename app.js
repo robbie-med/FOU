@@ -518,6 +518,30 @@ function generateSummary() {
   out.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
+// ── TEACHING PANEL ───────────────────────────────────────────────────────────
+
+function openTeachPanel() {
+  document.getElementById('teach-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeTeachPanel() {
+  document.getElementById('teach-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function expandAllTeachSections() {
+  document.querySelectorAll('.teach-section').forEach(d => { d.open = true; });
+}
+
+function collapseAllTeachSections() {
+  document.querySelectorAll('.teach-section').forEach(d => { d.open = false; });
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeTeachPanel();
+});
+
 // ── INIT ──────────────────────────────────────────────────────────────────────
 
 bindInputs();
